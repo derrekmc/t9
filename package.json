@@ -1,6 +1,6 @@
 {
   "name": "t9-rest-api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "t9 RESTful API for converting phone t9 input values to words ",
   "main": "index.js",
   "scripts": {

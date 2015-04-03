@@ -12,8 +12,9 @@ t9.loadDictionaryAsync('english', __dirname + '/english.dict')
                 t9.processNumericInputAsync(input)
                     .then(function(words){
                         console.log('t9 API word combination response:', words);
+                        var option = (Number(req.param('option')) || 0);
                         res.send({
-                            word: words[(req.param('option') || 0)],
+                            word: words[option],
                             words: words
                         });
                     })
