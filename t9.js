@@ -1,7 +1,7 @@
-"use strict";
-
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require('fs'));
+
+"use strict";
 
 var dictionaries = {
     default: ['hello', 'hi']
@@ -26,12 +26,11 @@ var t9 = {
         var self = this;
         fs.readFileAsync(filename)
             .then(function(contents) {
-                contents = contents.toString();
-                dictionaries[dictionaryName] = contents.split('\r\n');
+                dictionaries[dictionaryName] = contents.toString().toLowerCase().split('\n');
                 if(self.dictionaryName == 'default'){
                     self.dictionaryName = dictionaryName;
                 }
-                callback();
+                callback(null,  self.dictionaryName);
                 return;
             })
             .catch(function(err){
@@ -44,37 +43,39 @@ var t9 = {
         callback();
     },
 
-    processNumbericInput: function processNumbericInput(input, callback) {
-
+    processNumericInput: function processNumericInput(input, callback) {
+        var self = this;
         var numberList = input.toString().split('');
         var tempDictionary = dictionaries[this.dictionaryName];
-
         var output = [];
-        var self = this;
+        
 
         if(numberList.length === 1){
             output = numericDictionaryMap[input];
         }else{
-            numberList.forEach(function(number, wordsLetterIndex){
+            numberList.map(function(number, wordsLetterIndex){
                 self.narrowDictionaryOnInput(numberList, number, wordsLetterIndex, tempDictionary, function(narrowedDictionary, newNumberList){
                     tempDictionary = narrowedDictionary;
                     output = tempDictionary;
                 });
             });
         }
-
+        
+        //Limit our list to 100
+        output = output.slice(0, 100); 
+        
         if(output == '') {
-            throw(Error('No words found in dictionary(' + this.dictionaryName + ') that match the input: ' + input));
+            throw(Error('No words found in dictionary(' + this.dictionaryName + ') that match the input: ' + input + output));
         }else{
-            callback(null, output.slice(0, 400));
+            callback(null, output);
         }
 
     },
 
     narrowDictionaryOnInput: function narrowDictionaryFromInput(numbers, nextNumber, wordsLetterIndex, dictionary, callback){
         var output = [];
-        numericDictionaryMap[nextNumber].forEach(function(letter){
-            dictionary.forEach(function(word){
+        numericDictionaryMap[nextNumber].map(function(letter){
+            dictionary.map(function(word, i){
                 if(word[wordsLetterIndex] == letter && word.length === numbers.length){
                     output.push(word);
                 }

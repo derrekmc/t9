@@ -36,7 +36,7 @@ describe('t9 RESTful-API test suite', function(test){
         assert(input !== null, 'No input specified.');
         assert(option !== null, 'No option specified.');
 
-        t9.processNumbericInput(input, function(err, words){
+        t9.processNumericInput(input, function(err, words){
             assert(err !== null || err !== undefined, 'Error: ' + err);
             var output = {
                 word: words[option],
@@ -55,7 +55,7 @@ describe('t9 RESTful-API test suite', function(test){
         assert(input !== null, 'No input specified.');
         assert(option !== null, 'No option specified.');
 
-        t9.processNumbericInput(input, function(err, words){
+        t9.processNumericInput(input, function(err, words){
             assert(err !== null || err !== undefined, 'Error: ' + err);
             var output = {
                 word: words[option],
@@ -82,7 +82,7 @@ describe('t9 RESTful-API test suite', function(test){
         assert(input !== null, 'No input specified.');
         assert(option !== null, 'No option specified.');
 
-        t9.processNumbericInput(input, function(err, words){
+        t9.processNumericInput(input, function(err, words){
             assert(err !== null || err !== undefined, 'Error: ' + err);
             var output = {
                 word: words[option],
@@ -109,7 +109,7 @@ describe('t9 RESTful-API test suite', function(test){
         assert(input !== null, 'No input specified.');
         assert(option !== null, 'No option specified.');
 
-        t9.processNumbericInput(input, function(err, words){
+        t9.processNumericInput(input, function(err, words){
             assert(err !== null || err !== undefined, 'Error: ' + err);
             var output = {
                 word: words[option],
@@ -136,7 +136,7 @@ describe('t9 RESTful-API test suite', function(test){
         assert(input !== null, 'No input specified.');
         assert(option !== null, 'No option specified.');
 
-        t9.processNumbericInput(input, function(err, words){
+        t9.processNumericInput(input, function(err, words){
             assert(err !== null || err !== undefined, 'Error: ' + err);
             var output = {
                 word: words[option],

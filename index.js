@@ -9,7 +9,7 @@ t9.loadDictionaryAsync('english', __dirname + '/english.dict')
             var input = req.param('input');
             if(input){
                 console.log('Route:', input);
-                t9.processNumbericInputAsync(input)
+                t9.processNumericInputAsync(input)
                     .then(function(words){
                         res.send({
                             word: words[(req.param('option') || 0)],
