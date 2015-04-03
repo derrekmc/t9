@@ -7,10 +7,11 @@ t9.loadDictionaryAsync('english', __dirname + '/english.dict')
         console.log('Dictionary Loaded');
         router.get('', function(req, res, next) {
             var input = req.param('input');
-            if(input){
-                console.log('Route:', input);
+            
+                console.log('t9 API received:', input);
                 t9.processNumericInputAsync(input)
                     .then(function(words){
+                        console.log('t9 API word combination response:', words);
                         res.send({
                             word: words[(req.param('option') || 0)],
                             words: words
@@ -22,7 +23,7 @@ t9.loadDictionaryAsync('english', __dirname + '/english.dict')
                             error: e.toString()
                         });
                     });
-            }
+            
         });
     });
 
